@@ -9,7 +9,7 @@ steps:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1-b'
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-policy-management'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
-- name: 'gcr.io/optimistic-balm-233816/bespin-cli:dev'
+- name: 'gcr.io/optimistic-balm-233816/bespin-cloudbuild:dev'
   args: ['e0eb22d7966d834af8e6b928d228c62ad05fa040', '$REPO_NAME''$COMMIT_SHA']
   volumes:
   - name: 'kube'
