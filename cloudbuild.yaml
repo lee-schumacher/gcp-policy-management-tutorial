@@ -10,10 +10,15 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-policy-management'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
 - name: 'gcr.io/optimistic-balm-233816/bespin-cloudbuild:dev'
-  args: ['e0eb22d7966d834af8e6b928d228c62ad05fa040', '$REPO_NAME''$COMMIT_SHA']
+  args: ['$$TOKEN', '$REPO_NAME''$COMMIT_SHA']
   volumes:
   - name: 'kube'
     path: '/kube'
   env:
   - 'KUBECONFIG=/kube/config'
+
+secrets:
+- kmsKeyName: projects/optimistic-balm-233816/locations/global/keyRings/cloudbuilder-keyring/cryptoKeys/cloudbuilder-key
+  secretEnv:
+    TOKEN: CiQA3mq2GgvF7d5ALWph5biXXVepWVhxiNXxzEKqBWWDpvNMDvwSUgBB3B6gWqdvPrzZWSm9ON2bSolnpMY+e+dbRN/D6LNpNiq5tDnJps5D96iLVZdLMYHAQ4pnQBbm2RsiKzDQf/Ua3ys4pa91PeKC6LxwH1aaV0A=
 timeout: 30s
