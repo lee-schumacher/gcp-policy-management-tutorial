@@ -10,7 +10,8 @@ steps:
   - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-policy-management'
   - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
 - name: 'gcr.io/optimistic-balm-233816/bespin-cloudbuild:dev'
-  args: ['$$TOKEN', '$REPO_NAME''$COMMIT_SHA']
+  args: ['$$TOKEN', '$REPO_NAME', '$COMMIT_SHA']
+  secretenv: ['TOKEN']
   volumes:
   - name: 'kube'
     path: '/kube'
