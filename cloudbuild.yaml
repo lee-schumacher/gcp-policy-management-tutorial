@@ -1,0 +1,19 @@
+steps:
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['config', 'current-context']
+  volumes:
+  - name: 'kube'
+    path: '/kube'
+  env:
+  - 'KUBECONFIG=/kube/config'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-policy-management'
+  - 'CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS=true'
+- name: 'gcr.io/optimistic-balm-233816/lschumacher/2019-03-19-23-32-24-utc/bespin-cli:vet'
+  args: ['vet', '--path', '/workspace']
+  volumes:
+  - name: 'kube'
+    path: '/kube'
+  env:
+  - 'KUBECONFIG=/kube/config'
+timeout: 30s
